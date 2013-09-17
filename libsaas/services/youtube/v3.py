@@ -92,7 +92,8 @@ class Channels(YouTubeResource):
 
     @base.apimethod
     def get(self, part, id=None, mine=None, categoryId=None,
-            mySubscribers=None, maxResults=None, pageToken=None):
+            mySubscribers=None, managedByMe=None, forUsername=None,
+            maxResults=None, pageToken=None, onBehalfOfContentOwner=None):
         """
         Returns a collection of zero or more channel resources that
         match the request criteria.
@@ -126,6 +127,16 @@ class Channels(YouTubeResource):
             user's channel.
         :vartype mySubscribers: str
 
+        :var managedByMe: Set this parameter's value to true to instruct the
+            API to only return channels managed by the content owner that the
+            onBehalfOfContentOwner parameter specifies.
+        :vartype managedByMe: str
+
+        :var forUsername: The forUsername parameter specifies a YouTube
+            username, thereby requesting the channel associated with that
+            username.
+        :vartype forUsername: str
+
         :var maxResults: The maxResults parameter specifies the maximum number
             of items that should be returned in the result set. Acceptable
             values are 0 to 50, inclusive. The default value is 5.
@@ -136,6 +147,16 @@ class Channels(YouTubeResource):
             nextPageToken and prevPageToken properties identify other pages
             that could be retrieved.
         :vartype pageToken: str
+
+        :var onBehalfOfContentOwner: The onBehalfOfContentOwner parameter
+            indicates that the request's authorization credentials identify
+            a YouTube CMS user who is acting on behalf of the content owner
+            specified in the parameter value. This parameter is intended for
+            YouTube content partners that own and manage many different YouTube
+            channels. It allows content owners to authenticate once and get
+            access to all their video and channel data, without having to
+            provide authentication credentials for each individual channel.
+        :vartype onBehalfOfContentOwner: str
         """
         params = base.get_params(None, locals())
 
